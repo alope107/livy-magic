@@ -1,6 +1,6 @@
 import json, pprint, requests, textwrap, time
 class LivyClient(object):
-    def __init__(self, host="http://localhost:8998", kind="spark"):
+    def __init__(self, host="http://localhost:8998", kind='spark'):
         self.host = host
         self.headers = {'Content-Type': 'application/json'}
         self.data = {'kind': kind}
@@ -28,4 +28,4 @@ class LivyClient(object):
             r = requests.get(self.statement_url + "/" + str(self.statement_count), headers=self.headers)
             result = r.json()
         self.statement_count += 1
-        return result
+        return result["output"]["data"]["text/plain"]
